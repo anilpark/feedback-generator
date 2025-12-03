@@ -1,8 +1,29 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import ReactToPrint from "react-to-print";
 import qr from '../src/images/qr.png'
 
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+const keywords = {
+    en: {
+        hours: 'Hours',
+        testResult: 'Test result',
+        feedback: 'Teacher feedback',
+        improved: 'Improved',
+        commonErrors: 'Common errors',
+        recommendations: 'Recommendations',
+        profile: "Profile"
+    },
+    pl: {
+        hours: 'Godziny',
+        testResult: 'Wynik testu',
+        feedback: 'Opinie nauczyciela',
+        improved: 'Poprawiono',
+        commonErrors: 'Typowe błędy',
+        recommendations: 'Rekomendacje',
+        profile: "Profil"
+    }
+}
 
 function App() {
     const printRef = useRef(null);
@@ -17,6 +38,8 @@ function App() {
     const [recommendations, setRecommendations] = useState(['']);
     const [hours, setHours] = useState(0);
     const [testResult, setTestResult] = useState(50);
+    const [selectedLang, setSelectedLang] = useState('en');
+
 
     const imagePickHandler = (changeEvent) => {
         const selectedFile = changeEvent.target.files[0];
@@ -49,6 +72,14 @@ function App() {
             <div className="container">
                 <div className="leftPart">
                     <div className="formContainer">
+                        <div>
+                            <select value={selectedLang} onChange={(e) => {
+                                setSelectedLang(e.target.value)
+                            }}>
+                                <option value="en" >English</option>
+                                <option value="pl">Polish</option>
+                            </select>
+                        </div>
                         <div className='inputItem'>
                             <p>Picture</p>
                             <input
@@ -268,14 +299,14 @@ function App() {
                                     marginLeft: '30px',
                                 }}>
                                     <li>
-                                        Hours: {hours}
+                                        {keywords[selectedLang]['hours']}: {hours}
                                     </li>
                                     <li>
-                                        Test result: {testResult}/100
+                                        {keywords[selectedLang]['testResult']}: {testResult}/100
                                     </li>
 
                                 </ul>
-                                <p className='studentsProfile'>{name}'s profile</p>
+                                <p className='studentsProfile'>{keywords[selectedLang]['profile']}</p>
                                 <p className='bio'>
                                     {bio}
                                 </p>
@@ -285,13 +316,13 @@ function App() {
                         <div className="printRight">
                             <div className="rightWrapper">
                                 <div className="teachersFeedback">
-                                    <p>Feedback from teacher <span className="teacher">{teacher}</span></p>
+                                    <p>{keywords[selectedLang]['feedback']} <span className="teacher">{teacher}</span></p>
                                 </div>
 
                                 <div className="improveWrapper">
                                     <div className='improvedBlock'>
                                         <img src="https://img.icons8.com/external-filled-color-icons-papa-vector/78/null/external-Voice-Marketing-feedback-and-market-filled-color-icons-papa-vector.png"/>
-                                        <p>Improved:</p>
+                                        <p>{keywords[selectedLang]['improved']}:</p>
                                     </div>
 
                                     <ul className='list'>
@@ -302,7 +333,7 @@ function App() {
                                 <div className="errorsWrapper">
                                     <div className='errorsBlock'>
                                         <img src="https://img.icons8.com/nolan/64/circular-arrows.png"/>
-                                        <p>Common errors:</p>
+                                        <p>{keywords[selectedLang]['commonErrors']}:</p>
                                     </div>
 
                                     <ul className='list'>
@@ -313,7 +344,8 @@ function App() {
 
                                 <div className="recommendationsWrapper">
                                     <div className='recommendationsBlock'>
-                                        <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-recommendation-literature-flaticons-lineal-color-flat-icons.png" alt=''/>                                        <p>Recommendations:</p>
+                                        <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-recommendation-literature-flaticons-lineal-color-flat-icons.png" alt=''/>
+                                        <p>{keywords[selectedLang]['recommendations']}:</p>
                                     </div>
 
                                     <ul className='list'>
@@ -323,7 +355,7 @@ function App() {
                             </div>
 
                             <div className='bottomBlock'>
-                                <a href="https://instagram.com/eng_fakultet"><img className='qr' src={qr} alt=''/></a>
+                                <a href="https://instagram.com/english.sharks"><img className='qr' src={qr} alt=''/></a>
                             </div>
 
                         </div>
