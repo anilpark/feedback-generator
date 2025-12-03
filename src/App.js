@@ -37,7 +37,7 @@ function App() {
     const [errors, setErrors] = useState(['']);
     const [recommendations, setRecommendations] = useState(['']);
     const [hours, setHours] = useState(0);
-    const [testResult, setTestResult] = useState(50);
+    const [testResult, setTestResult] = useState(55);
     const [selectedLang, setSelectedLang] = useState('en');
 
 
