@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState, useRef} from "react";
 import ReactToPrint from "react-to-print";
 import qr from '../src/images/qr.png'
 
