@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/feedback-generator/static/css/main.b52cfa92.css",
+    "main.js": "/feedback-generator/static/js/main.f781373b.js",
+    "static/media/qr.png": "/feedback-generator/static/media/qr.5ecb67720df7ec9c2fc1.png",
+    "index.html": "/feedback-generator/index.html",
+    "main.b52cfa92.css.map": "/feedback-generator/static/css/main.b52cfa92.css.map",
+    "main.f781373b.js.map": "/feedback-generator/static/js/main.f781373b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b52cfa92.css",
+    "static/js/main.f781373b.js"
+  ]
+}
