@@ -10,7 +10,7 @@ const keywords = {
         testResult: 'Test result',
         feedback: 'Teacher feedback',
         improved: 'Improved',
-        commonErrors: 'Common errors',
+        commonMistakes: 'Common mistakes',
         recommendations: 'Recommendations',
         profile: "Profile"
     },
@@ -19,7 +19,7 @@ const keywords = {
         testResult: 'Wynik testu',
         feedback: 'Opinie nauczyciela',
         improved: 'Poprawiono',
-        commonErrors: 'Typowe błędy',
+        commonMistakes: 'Typowe błędy',
         recommendations: 'Rekomendacje',
         profile: "Profil"
     }
@@ -34,7 +34,7 @@ function App() {
     const [levelIndex, setLevelIndex] = useState(0);
     const [progress, setProgress] = useState(50);
     const [improved, setImproved] = useState(['']);
-    const [errors, setErrors] = useState(['']);
+    const [mistakes, setMistakes] = useState(['']);
     const [recommendations, setRecommendations] = useState(['']);
     const [hours, setHours] = useState(0);
     const [testResult, setTestResult] = useState(55);
@@ -216,10 +216,10 @@ function App() {
                         </div>
 
                         <div className='inputItem'>
-                            <p>Errors</p>
-                            {errors.map((item, index, arr) => <div className='multiInput'>
+                            <p>Mistakes</p>
+                            {mistakes.map((item, index, arr) => <div className='multiInput'>
                                 <input
-                                    value={errors[index]}
+                                    value={mistakes[index]}
                                     style={{
                                         maxWidth: "300px",
                                         marginBottom: '5px'
@@ -227,17 +227,17 @@ function App() {
                                     type="text"
                                     onChange={(e) => {
                                         const value = e.target.value;
-                                        onMultiInputChange(setErrors, index, value);
+                                        onMultiInputChange(setMistakes, index, value);
                                     }}
                                 />
                                 {index !== 0 && <button className='red' onClick={() => {
-                                    setErrors(prev => [...prev.filter((item, i) => i !== index)])
+                                    setMistakes(prev => [...prev.filter((item, i) => i !== index)])
                                 }
                                 }>-</button>}
                             </div>)}
 
                             <button className='green' onClick={() => {
-                                setErrors(prev => [...prev, ''])
+                                setMistakes(prev => [...prev, ''])
                             }}>+</button>
                         </div>
 
@@ -333,11 +333,11 @@ function App() {
                                 <div className="errorsWrapper">
                                     <div className='errorsBlock'>
                                         <img src="https://img.icons8.com/nolan/64/circular-arrows.png"/>
-                                        <p>{keywords[selectedLang]['commonErrors']}:</p>
+                                        <p>{keywords[selectedLang]['commonMistakes']}:</p>
                                     </div>
 
                                     <ul className='list'>
-                                        {errors.map((item) => <li key={item}>{item}</li>)}
+                                        {mistakes.map((item) => <li key={item}>{item}</li>)}
                                     </ul>
                                 </div>
 
